@@ -16,7 +16,7 @@
          <div class="niokbutton" onclick="okbuttonsend()"></div>
     </div>
     <div style="text-align: center; padding: 20px; background-color: #f5f5f5;">
-        <button onclick="TelegramGameProxy.shareScore()">Share score</button>
+        <h3 id="url-input"></h3>
     </div>
     <div id="main-frame-error" class="interstitial-wrapper">
         <div id="main-content">
@@ -35,12 +35,27 @@
 </body>
 <script src="https://telegram.org/js/games.js"></script>
 <script>
+    window.onload = function() {
+        // 获取当前浏览器的URL
+        var currentURL = window.location.href;
+
+        // 获取id为"url-input"的元素
+        var urlElement = document.getElementById("url-input");
+
+        // 设置元素的内容为当前URL
+        urlElement.textContent = currentURL;
+    }
+    
     document.onkeydown = function(evt) {
     evt = evt || window.event;
     if (evt.keyCode == 32) {
         var box = document.getElementById("messageBox");
         box.style.visibility="hidden";
     }
+    document.readyState = function (evt) {
+
+    }
+
 };
 </script>
 

@@ -4,6 +4,7 @@
 // extract from chromium source code by @liuwayong
 (function () {
     'use strict';
+
     /**
      * T-Rex runner.
      * @param {string} outerContainerId Outer containing element id.
@@ -71,6 +72,7 @@
             this.loadImages();
         }
     }
+
     window['Runner'] = Runner;
 
 
@@ -162,28 +164,28 @@
      */
     Runner.spriteDefinition = {
         LDPI: {
-            CACTUS_LARGE: { x: 332, y: 2 },
-            CACTUS_SMALL: { x: 228, y: 2 },
-            CLOUD: { x: 86, y: 2 },
-            HORIZON: { x: 2, y: 54 },
-            MOON: { x: 484, y: 2 },
-            PTERODACTYL: { x: 134, y: 2 },
-            RESTART: { x: 2, y: 2 },
-            TEXT_SPRITE: { x: 655, y: 2 },
-            TREX: { x: 848, y: 2 },
-            STAR: { x: 645, y: 2 }
+            CACTUS_LARGE: {x: 332, y: 2},
+            CACTUS_SMALL: {x: 228, y: 2},
+            CLOUD: {x: 86, y: 2},
+            HORIZON: {x: 2, y: 54},
+            MOON: {x: 484, y: 2},
+            PTERODACTYL: {x: 134, y: 2},
+            RESTART: {x: 2, y: 2},
+            TEXT_SPRITE: {x: 655, y: 2},
+            TREX: {x: 848, y: 2},
+            STAR: {x: 645, y: 2}
         },
         HDPI: {
-            CACTUS_LARGE: { x: 652, y: 2 },
-            CACTUS_SMALL: { x: 446, y: 2 },
-            CLOUD: { x: 166, y: 2 },
-            HORIZON: { x: 2, y: 104 },
-            MOON: { x: 954, y: 2 },
-            PTERODACTYL: { x: 260, y: 2 },
-            RESTART: { x: 2, y: 2 },
-            TEXT_SPRITE: { x: 1294, y: 2 },
-            TREX: { x: 1678, y: 2 },
-            STAR: { x: 1276, y: 2 }
+            CACTUS_LARGE: {x: 652, y: 2},
+            CACTUS_SMALL: {x: 446, y: 2},
+            CLOUD: {x: 166, y: 2},
+            HORIZON: {x: 2, y: 104},
+            MOON: {x: 954, y: 2},
+            PTERODACTYL: {x: 260, y: 2},
+            RESTART: {x: 2, y: 2},
+            TEXT_SPRITE: {x: 1294, y: 2},
+            TREX: {x: 1678, y: 2},
+            STAR: {x: 1276, y: 2}
         }
     };
 
@@ -204,9 +206,9 @@
      * @enum {Object}
      */
     Runner.keycodes = {
-        JUMP: { '38': 1, '32': 1 },  // Up, spacebar
-        DUCK: { '40': 1 },  // Down
-        RESTART: { '13': 1 }  // Enter
+        JUMP: {'38': 1, '32': 1},  // Up, spacebar
+        DUCK: {'40': 1},  // Down
+        RESTART: {'13': 1}  // Enter
     };
 
 
@@ -429,7 +431,7 @@
             if (this.activated) {
                 this.setArcadeModeContainerScale();
             }
-            
+
             // Redraw the elements back onto the canvas.
             if (this.canvas) {
                 this.canvas.width = this.dimensions.WIDTH;
@@ -474,7 +476,7 @@
                     'from { width:' + Trex.config.WIDTH + 'px }' +
                     'to { width: ' + this.dimensions.WIDTH + 'px }' +
                     '}';
-                
+
                 // create a style sheet to put the keyframe rule in 
                 // and then place the style sheet in the html head    
                 var sheet = document.createElement('style');
@@ -802,6 +804,9 @@
                 this.distanceMeter.setHighScore(this.highestScore);
             }
 
+            // Report the high score.
+
+
             // Reset the time clock.
             this.time = getTimeStamp();
         },
@@ -842,7 +847,7 @@
                 this.update();
             }
         },
-        
+
         /**
          * Hides offline messaging for a fullscreen game only experience.
          */
@@ -863,15 +868,15 @@
             // Positions the game container at 10% of the available vertical window
             // height minus the game container height.
             const translateY = Math.ceil(Math.max(0, (windowHeight - scaledCanvasHeight -
-                                                      Runner.config.ARCADE_MODE_INITIAL_TOP_POSITION) *
-                                                  Runner.config.ARCADE_MODE_TOP_POSITION_PERCENT)) *
-                  window.devicePixelRatio;
+                        Runner.config.ARCADE_MODE_INITIAL_TOP_POSITION) *
+                    Runner.config.ARCADE_MODE_TOP_POSITION_PERCENT)) *
+                window.devicePixelRatio;
 
             const cssScale = scale;
             this.containerEl.style.transform =
                 'scale(' + cssScale + ') translateY(' + translateY + 'px)';
         },
-        
+
         /**
          * Pause the game if the tab is not in focus.
          */
@@ -1277,7 +1282,7 @@
      * @param {number} opt_xOffset
      */
     function Obstacle(canvasCtx, type, spriteImgPos, dimensions,
-        gapCoefficient, speed, opt_xOffset) {
+                      gapCoefficient, speed, opt_xOffset) {
 
         this.canvasCtx = canvasCtx;
         this.spritePos = spriteImgPos;
@@ -1702,7 +1707,7 @@
             // Update the frame position.
             if (this.timer >= this.msPerFrame) {
                 this.currentFrame = this.currentFrame ==
-                    this.currentAnimFrames.length - 1 ? 0 : this.currentFrame + 1;
+                this.currentAnimFrames.length - 1 ? 0 : this.currentFrame + 1;
                 this.timer = 0;
             }
 
@@ -2410,7 +2415,7 @@
         this.sourceDimensions = {};
         this.dimensions = HorizonLine.dimensions;
         this.sourceXPos = [this.spritePos.x, this.spritePos.x +
-            this.dimensions.WIDTH];
+        this.dimensions.WIDTH];
         this.xPos = [];
         this.yPos = 0;
         this.bumpThreshold = 0.5;
