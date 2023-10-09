@@ -349,6 +349,13 @@
             }
         },
 
+        genHmac: function generateRequestHmac(requestId, requestTime, extra = {}) {
+            const secretKey = 'test_api_key'; // 与服务器共享的密钥
+            const hmacPayload = requestId + requestTime + JSON.stringify(extra);
+            const requestHmac = CryptoJS.HmacSHA256(hmacPayload, secretKey).toString();
+            return requestHmac;
+        },
+
         /**
          * Game initialiser.
          */
@@ -805,7 +812,26 @@
             }
 
             // Report the high score.
+            const urlParams = new URLSearchParams(window.location.search);
+            const authorization = urlParams.get('authorization');
+            if (authorization) {
+                const extraData = {score: Math.ceil(this.distanceRan)};
+                const requestId = "test-request-id";
+                const requestTime = Math.floor(Date.now() / 1000).toString();
+                const requestHmac = this.genHmac(requestId, requestTime, extraData);
 
+                const xhr = new XMLHttpRequest();
+                // xhr.open('POST', `http://localhost:8000/score`, true);
+                xhr.open('POST', `https://real-robin-11-bb2v1s87qg3b.deno.dev/score`, true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                xhr.setRequestHeader('authorization', authorization);
+                xhr.setRequestHeader('x_app_request_id', requestId);
+                xhr.setRequestHeader('x_app_request_time', requestTime);
+                xhr.setRequestHeader('x-app-request-hmac', requestHmac);
+                xhr.send(JSON.stringify(extraData));
+            } else {
+                console.log("no authorization to send high score.")
+            }
 
             // Reset the time clock.
             this.time = getTimeStamp();
