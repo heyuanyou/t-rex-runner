@@ -822,7 +822,7 @@
 
                 const xhr = new XMLHttpRequest();
                 // xhr.open('POST', `http://localhost:8000/score`, true);
-                xhr.open('POST', `https://real-robin-11-bb2v1s87qg3b.deno.dev/score`, true);
+                xhr.open('POST', `https://bright-hedgehog-59.deno.dev/score`, true);
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                 xhr.setRequestHeader('authorization', authorization);
                 xhr.setRequestHeader('x_app_request_id', requestId);
