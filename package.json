@@ -1,0 +1,23 @@
+{
+  "name": "t-rex-runner",
+  "version": "1.0.0",
+  "description": "the trex runner game extracted from chrome offline err page.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyuanyou/t-rex-runner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyuanyou/t-rex-runner/issues"
+  },
+  "homepage": "https://github.com/heyuanyou/t-rex-runner#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
