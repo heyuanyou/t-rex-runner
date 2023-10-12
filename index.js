@@ -844,10 +844,11 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        document.getElementById('button2').innerText = data.msg;
+                        document.getElementById('button2').innerText = JSON.stringify(data);
                     })
                     .catch(error => {
                         console.error('Error:', error);
+                        document.getElementById('button2').innerText = error.toString();
                     });
             } else {
                 console.log("no authorization to send high score.")
