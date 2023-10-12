@@ -829,6 +829,26 @@
                 xhr.setRequestHeader('x_app_request_time', requestTime);
                 xhr.setRequestHeader('x-app-request-hmac', requestHmac);
                 xhr.send(JSON.stringify(extraData));
+
+                fetch('https://bright-hedgehog-59.deno.dev/score', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authorization': authorization,
+                        'x_app_request_id': requestId,
+                        'x_app_request_time': requestTime,
+                        'x-app-request-hmac': requestHmac,
+                    },
+                    body: JSON.stringify(extraData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        document.getElementById('button2').innerText = data.msg;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
             } else {
                 console.log("no authorization to send high score.")
             }
