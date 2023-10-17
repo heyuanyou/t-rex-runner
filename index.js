@@ -820,23 +820,22 @@
                 const requestTime = Math.floor(Date.now() / 1000).toString();
                 const requestHmac = this.genHmac(requestId, requestTime, extraData);
 
-                const xhr = new XMLHttpRequest();
-                // xhr.open('POST', `http://localhost:8000/score`, true);
-                xhr.open('POST', `https://bright-hedgehog-59.deno.dev/score`, true);
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-                xhr.setRequestHeader('authorization', authorization);
-                xhr.setRequestHeader('x_app_request_id', requestId);
-                xhr.setRequestHeader('x_app_request_time', requestTime);
-                xhr.setRequestHeader('x-app-request-hmac', requestHmac);
-                xhr.send(JSON.stringify(extraData));
+                // const xhr = new XMLHttpRequest();
+                // xhr.open('POST', `https://bright-hedgehog-59.deno.dev/score`, true);
+                // xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                // xhr.setRequestHeader('authorization', authorization);
+                // xhr.setRequestHeader('x_app_request_id', requestId);
+                // xhr.setRequestHeader('x-app-request-time', requestTime);
+                // xhr.setRequestHeader('x-app-request-hmac', requestHmac);
+                // xhr.send(JSON.stringify(extraData));
 
                 fetch('https://bright-hedgehog-59.deno.dev/score', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'authorization': authorization,
-                        'x_app_request_id': requestId,
-                        'x_app_request_time': requestTime,
+                        'x-app-request-id': requestId,
+                        'x-app-request-time': requestTime,
                         'x-app-request-hmac': requestHmac,
                     },
                     body: JSON.stringify(extraData),
